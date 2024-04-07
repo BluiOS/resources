@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import ComposableArchitecture
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,7 +19,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController(viewModel: HomeViewModel())
+        let rootController = TCAViewController(
+            store: Store(
+                initialState: TCAFeature.State(childState: .init(fact: "Mammad")),
+                reducer: {
+                    TCAFeature()
+                }
+            )
+        )
+
+        window.rootViewController = UINavigationController(rootViewController: rootController)
         window.makeKeyAndVisible()
         self.window = window
     }
