@@ -5,6 +5,7 @@
 - [Swift on Server (Vapor)](Vapor.md)
 - [Cryptography](Cryptography.md)
 - [SpriteKit](./Game/2D/SpriteKit/SpriteKit.md)
+- [Animation](./Animation/UIDynamicAnimator/UIDynamicAnimatorAnimator.md)
 
 # Projects
 
