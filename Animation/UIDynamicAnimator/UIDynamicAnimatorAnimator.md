@@ -142,7 +142,7 @@ or
 I place adding the box object to gravity when the screen is touched. (approach one)
 After completing step 5, you will be able to observe the effect of gravity on the box object.
 
-![](https://github.com/BluiOS/resources/blob/HEssam/Animator/Animation/UIDynamicAnimator/scrrengif_2.gif)
+![](https://github.com/BluiOS/resources/blob/main/Animation/UIDynamicAnimator/scrrengif_2.gif)
 
 6. **Change Gravity Direction**
 By changing the direction of gravity, the object's movement along the x-axis also changes accordingly. We can set any direction by adjusting the values of dx and dy.
@@ -158,7 +158,7 @@ By changing the direction of gravity, the object's movement along the x-axis als
 //        gravity.gravityDirection = .init(dx: 0.1, dy: -1.0)
     }
 ```
-![](https://github.com/BluiOS/resources/blob/HEssam/Animator/Animation/UIDynamicAnimator/scrrengif_3.gif)
+![](https://github.com/BluiOS/resources/blob/main/Animation/UIDynamicAnimator/scrrengif_3.gif)
 
 7. **Change magnitude**
 ``` swift
@@ -207,7 +207,7 @@ var counter = 0
         }
     }
 ```
-![](https://github.com/BluiOS/resources/blob/HEssam/Animator/Animation/UIDynamicAnimator/scrrengif_4.gif)
+![](https://github.com/BluiOS/resources/blob/main/Animation/UIDynamicAnimator/scrrengif_4.gif)
 
 9. **Additional Behavior**
 Finally, we add a UICollisionBehavior to set up boundaries for the object.
@@ -243,7 +243,7 @@ func setupCollision() {
         collision.addItem(box)
     }
 ```
-![](https://github.com/BluiOS/resources/blob/HEssam/Animator/Animation/UIDynamicAnimator/scrrengif_5.gif)
+![](https://github.com/BluiOS/resources/blob/main/Animation/UIDynamicAnimator/scrrengif_5.gif)
 
 10. **final code**
 ```swift
