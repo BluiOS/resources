@@ -8,6 +8,7 @@
 - [Animation](./Animation/Animation.md)
 - [visionOS](./Ajibeee)
 - [Macro](./Macro/Macro.md)
+- [Code Simplification Tips](./CodeSimplificationTips/CodeSimplificationTips.md)
 
 # Projects
 
