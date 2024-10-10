@@ -4,7 +4,7 @@ import Combine
 private var cancellables = Set<AnyCancellable>()
 private struct AppError: Error {}
 
-// 1. Combining Merge and Sorting Publishers
+// Combining Merge and Sorting Publishers
 /// This function merges multiple publishers and sorts the emitted values based on their order in the array of publishers.
 /// It collects the values and sorts them based on the original publisher index.
 /// - Returns: A publisher that emits an array of sorted results.
@@ -26,7 +26,7 @@ extension Array where Element: Publisher {
     }
 }
 
-// 2. Combining Zipping Publishers and Sorting
+// Combining Zipping Publishers and Sorting
 /// This function zips multiple publishers and sorts the emitted values based on their order in the array.
 /// The function ensures the publishers emit values simultaneously and combines the results.
 /// - Returns: A publisher that emits an array of zipped results.
@@ -45,7 +45,7 @@ extension Array where Element: Publisher {
     }
 }
 
-// 3. Combining Latest Publishers and Sorting
+// Combining Latest Publishers and Sorting
 /// This function combines the latest values from multiple publishers and sorts the emitted values.
 /// It ensures that the latest value from each publisher is included in the result.
 /// - Returns: A publisher that emits an array of combined latest results.
@@ -64,7 +64,7 @@ extension Array where Element: Publisher {
     }
 }
 
-// 4. Collecting All Results Including Failures
+// Collecting All Results Including Failures
 /// This function collects results from multiple publishers, capturing successes and failures.
 /// Each result is stored as either a success or failure, preserving the order of the original publishers.
 /// - Returns: A publisher that emits an array of results, including both successes and failures.
@@ -87,16 +87,7 @@ extension Array where Element: Publisher {
     }
 }
 
-// 5. Demonstrating Publisher Concepts
-/// This function demonstrates the various types of publishers available in Combine.
-/// It shows how different publishers such as `Just`, `Future`, `PassthroughSubject`, and more work, and how they emit values and handle
-/// completion.
-/// - Example: Using different publishers to emit values, errors, and completions.
-func combinePublisherConcept() {
-    // Example with Just, Future, PassthroughSubject, CurrentValueSubject, Deferred, Empty, and Fail publishers
-}
-
-// 6. Simple Combine Example
+// Simple Combine Example
 /// This function provides a basic example of using Combine to create a publisher and print emitted values.
 /// - Example: It uses the `Just` publisher to emit a simple string.
 func combineExamples() {
@@ -106,7 +97,7 @@ func combineExamples() {
     }.store(in: &cancellables)
 }
 
-// 7. Combining Serial Operations
+// Combining Serial Operations
 /// This function demonstrates how to use Combine to execute a sequence of operations serially.
 /// It uses a sequence of integers as the input, and each value is emitted one at a time in sequence.
 /// - Example: Serial execution of operations using Combine.
@@ -117,7 +108,7 @@ func combineSerialBasics() {
     }.store(in: &cancellables)
 }
 
-// 8. Combining Concurrent Operations
+// Combining Concurrent Operations
 /// This function demonstrates how to execute multiple publishers concurrently using Combine.
 /// The operations are run in parallel, with each operation potentially executing on a different thread.
 /// - Example: Concurrent execution using Combine.
@@ -130,7 +121,7 @@ func combineConcurrentBasics() {
     }).store(in: &cancellables)
 }
 
-// 9. Combining Priority and Cancellation
+// Combining Priority and Cancellation
 /// This function demonstrates how to use Combine with cancellation and priority handling.
 /// The subscription is cancelled after emitting the second value, so the third value is not processed.
 /// - Example: Shows how to cancel Combine subscriptions.
@@ -145,7 +136,7 @@ func combinePriorityAndCancellation() {
     subject.send(3)
 }
 
-// 10. Combining Identification
+// Combining Identification
 /// This function demonstrates how to identify the thread on which a Combine publisher is executing.
 /// It prints the thread information for each operation.
 /// - Example: Checking the thread where Combine publishers are running.
@@ -156,7 +147,7 @@ func combineIdentification() {
     }.store(in: &cancellables)
 }
 
-// 11. Combining Hierarchy
+// Combining Hierarchy
 /// This function demonstrates the use of multiple publishers with different Quality of Service (QoS) levels in Combine.
 /// Each publisher runs on a different QoS level and prints its value.
 /// - Example: Combining publishers with different priorities.
@@ -178,7 +169,7 @@ func combineHierarchy() {
     }.store(in: &cancellables)
 }
 
-// 12. Combining Serial Test Case
+// Combining Serial Test Case
 /// This function demonstrates using Combine for serial execution of tasks with delays.
 /// It simulates processing each item sequentially and prints the thread where each item is processed.
 /// - Example: Serial execution using Combine publishers.
@@ -191,7 +182,7 @@ func combineSerialTestCase() {
     }).store(in: &cancellables)
 }
 
-// 13. Combining Group Test Case
+// Combining Group Test Case
 /// This function demonstrates how to collect results in batches using Combine.
 /// It collects a specified number of elements from a range of integers and prints the results in groups.
 /// - Example: Batch collection of values using Combine.
@@ -204,7 +195,7 @@ func combineGroupTestCase() {
     }).store(in: &cancellables)
 }
 
-// 14. Demonstrating Schedulers
+// Demonstrating Schedulers
 /// This function demonstrates how to use different schedulers in Combine, such as `DispatchQueue`, `OperationQueue`, and
 /// `ImmediateScheduler`.
 /// It shows how to schedule publishers on different threads and observe the execution.
@@ -247,7 +238,7 @@ func demonstrateSchedulers() {
         }).store(in: &cancellables)
 }
 
-// 15. Coordination between Publishers
+// Coordination between Publishers
 /// This function demonstrates the coordination between publishers in Combine.
 /// It creates a chain of dependencies, where each subsequent publisher depends on the result of the previous one.
 /// - Example: Sequential coordination using Combine publishers.
@@ -300,7 +291,7 @@ func combineCoordination() {
         .store(in: &cancellables)
 }
 
-// 16. Preventing Data Races in Combine
+// Preventing Data Races in Combine
 /// This function demonstrates how to prevent data races in Combine using concurrent queues with a barrier flag.
 /// The barrier ensures that shared data is accessed safely even when multiple tasks are executed concurrently.
 /// - Example: Using Combine to prevent data race conditions.
@@ -328,7 +319,7 @@ func combineDataRace() {
         .store(in: &cancellables)
 }
 
-// 17. Evaluating Performance of Operations in Combine
+// Evaluating Performance of Operations in Combine
 /// This function evaluates the performance of executing a large number of operations using Combine.
 /// It repeatedly executes a long-running task on multiple threads using Combine publishers and logs the current thread information.
 /// - Example: Measuring performance of concurrent operations using Combine.
