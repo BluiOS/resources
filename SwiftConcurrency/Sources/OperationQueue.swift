@@ -1,43 +1,46 @@
 import Foundation
 
-/// این تابع مثالی از استفاده از کلاس `OperationQueue` برای مدیریت و اجرای عملیات‌ها به صورت همزمان را نشان می‌دهد.
+
+/// This function demonstrates the use of `OperationQueue` to manage and execute concurrent operations.
 ///
-/// کلاس `OperationQueue` به شما اجازه می‌دهد که عملیات‌های مختلف را به صف اضافه کنید و نحوه اجرای آن‌ها را کنترل کنید.
+/// The `OperationQueue` class allows you to queue multiple operations and control how they are executed.
 ///
-/// - پارامترها:
-///   - maxConcurrentOperationCount: تعداد حداکثر عملیاتی که می‌توانند به صورت همزمان اجرا شوند. مقدار پیش‌فرض این پارامتر به سیستم عامل و منابع موجود بستگی دارد.
-///   - isSuspended: یک بولین که نشان می‌دهد آیا صف عملیات متوقف شده است یا خیر. اگر مقدار `true` باشد، عملیات‌های جدید اجرا نمی‌شوند تا زمانی که صف از حالت تعلیق خارج شود.
-///   - operations: یک آرایه از عملیات‌های فعلی که در صف هستند.
-///   - operationCount: تعداد عملیات‌های موجود در صف.
+/// - Parameters:
+///   - maxConcurrentOperationCount: The maximum number of operations that can run simultaneously. By default, this parameter depends on the
+/// system resources.
+///   - isSuspended: A boolean that indicates whether the operation queue is suspended. If `true`, new operations will not execute until the
+/// queue is resumed.
+///   - operations: An array of the current operations in the queue.
+///   - operationCount: The number of operations currently in the queue.
 ///
-/// - متدها:
-///   - addOperation(_:): یک عملیات (`Operation`) را به صف اضافه می‌کند.
-///   - addOperations(_:waitUntilFinished:): چندین عملیات را به صف اضافه می‌کند و می‌تواند منتظر بماند تا همه عملیات‌ها تمام شوند.
-///   - addOperation(_:) (با یک کلوزر به عنوان ورودی): یک عملیات را با استفاده از یک کلوزر به صف اضافه می‌کند.
-///   - cancelAllOperations(): تمام عملیات‌های موجود در صف را لغو می‌کند.
-///   - waitUntilAllOperationsAreFinished(): منتظر می‌ماند تا تمام عملیات‌های موجود در صف تمام شوند.
+/// - Methods:
+///   - addOperation(_:): Adds an `Operation` to the queue.
+///   - addOperations(_:waitUntilFinished:): Adds multiple operations to the queue and can wait until all operations finish.
+///   - addOperation(_:) (using a closure): Adds an operation to the queue using a closure.
+///   - cancelAllOperations(): Cancels all operations in the queue.
+///   - waitUntilAllOperationsAreFinished(): Waits until all operations in the queue finish executing.
 ///
-/// عملکرد:
-/// 1. یک صف عملیات جدید (`OperationQueue`) ایجاد می‌شود.
-/// 2. پنج عملیات مختلف به صف اضافه می‌شوند که هر کدام یک پیغام را چاپ کرده و به مدت یک ثانیه به حالت خواب می‌روند.
-/// 3. تعداد حداکثر عملیات‌های همزمان به 2 تنظیم می‌شود.
-/// 4. صف عملیات متوقف و سپس از حالت توقف خارج می‌شود.
-/// 5. پس از اتمام تمام عملیات‌ها، یک پیغام چاپ می‌شود.
+/// Functionality:
+/// 1. A new `OperationQueue` is created.
+/// 2. Five different operations are added to the queue, each printing a message and sleeping for one second.
+/// 3. The maximum number of concurrent operations is set to 2.
+/// 4. The operation queue is suspended and then resumed.
+/// 5. After all operations finish, a message is printed.
 ///
-/// مثال استفاده:
+/// Example usage:
 /// ```swift
-/// operationQueueExample()
+/// operationQueue()
 /// ```
 func operationQueue() {
     let operationQueue = OperationQueue()
     operationQueue.maxConcurrentOperationCount = 2
-    operationQueue.name = "khariat Mahz"
+    operationQueue.name = "Example Operation Queue"
     operationQueue.qualityOfService = .userInteractive
-    
-    for i in 1...100 {
+
+    for i in 1...5 {
         operationQueue.addOperation {
             print("Operation \(i) started")
-            Thread.sleep(forTimeInterval: 1) // به مدت یک ثانیه به حالت خواب می‌رود
+            Thread.sleep(forTimeInterval: 1)
             print("Operation \(i) finished")
         }
     }
@@ -49,31 +52,30 @@ func operationQueue() {
         operationQueue.isSuspended = false
         print("Operation queue is resumed")
     }
-    
+
     operationQueue.waitUntilAllOperationsAreFinished()
-    
+
     print("All operations are finished")
 }
 
-
-/// این تابع مثالی از استفاده از `OperationQueue` برای مدیریت عملیات‌های همزمان را نشان می‌دهد.
+/// This function demonstrates the use of `OperationQueue` for managing concurrent operations.
 ///
-/// تابع `operationQueueExample` یک صف عملیات ایجاد می‌کند و چندین عملیات را به آن اضافه می‌کند.
-/// هر عملیات یک پیام چاپ می‌کند و برای مدتی به حالت خواب می‌رود تا شبیه‌سازی یک کار زمان‌بر باشد.
+/// The `operationQueueExample` function creates an operation queue and adds multiple operations to it.
+/// Each operation prints a message and sleeps for a while to simulate a time-consuming task.
 ///
-/// عملکرد:
-/// 1. یک `OperationQueue` ایجاد می‌شود.
-/// 2. سه عملیات (`Operation`) به صف عملیات اضافه می‌شوند.
-/// 3. هر عملیات یک پیام چاپ می‌کند و به مدت 2 ثانیه به حالت خواب می‌رود.
-/// 4. عملیات‌ها به صورت همزمان اجرا می‌شوند.
+/// Functionality:
+/// 1. An `OperationQueue` is created.
+/// 2. Three `Operation`s are added to the operation queue.
+/// 3. Each operation prints a message and sleeps for 2 seconds.
+/// 4. The operations run concurrently.
 ///
-/// مثال استفاده:
+/// Example usage:
 /// ```swift
 /// operationQueueExample()
 /// ```
 func operationQueueExample() {
     let operationQueue = OperationQueue()
-    
+
     let operation1 = BlockOperation {
         Thread.sleep(forTimeInterval: 2)
         print("1", Thread.current)
@@ -97,20 +99,19 @@ func operationQueueExample() {
     print("All operations completed")
 }
 
-
-/// این تابع مثالی از استفاده از `OperationQueue` برای تنظیم اولویت و لغو یک عملیات را نشان می‌دهد.
+/// This function demonstrates using `OperationQueue` to set priority and cancel an operation.
 ///
-/// تابع `operationPriorityAndCancellation` یک صف عملیات (`OperationQueue`) ایجاد می‌کند و یک عملیات (`BlockOperation`) به آن اضافه می‌کند.
-/// این عملیات شامل یک بلوک اجرایی است که زمان اجرا را اندازه‌گیری کرده و پس از یک وقفه کوتاه، بررسی می‌کند که آیا عملیات لغو شده است یا خیر.
-/// اگر عملیات لغو شده باشد، پیام "Cancelled!" چاپ می‌شود و در غیر این صورت، اطلاعات ترد جاری چاپ می‌شود.
+/// The `operationPriorityAndCancellation` function creates an `OperationQueue` and adds a `BlockOperation` to it.
+/// This operation measures the execution time, and after a short delay, checks whether the operation was canceled.
+/// If the operation was canceled, it prints "Cancelled!"; otherwise, it prints the current thread information.
 ///
-/// - عملکرد:
-/// 1. ایجاد یک صف عملیات جدید (`OperationQueue`).
-/// 2. تعریف و اضافه کردن یک عملیات به صف.
-/// 3. تنظیم کیفیت سرویس عملیات به `.background`.
-/// 4. لغو عملیات پس از 0.1 ثانیه.
+/// - Functionality:
+/// 1. Create a new `OperationQueue`.
+/// 2. Define and add an operation to the queue.
+/// 3. Set the quality of service of the operation to `.background`.
+/// 4. Cancel the operation after 0.1 seconds.
 ///
-/// مثال استفاده:
+/// Example usage:
 /// ```swift
 /// operationPriorityAndCancellation()
 /// ```
@@ -133,30 +134,29 @@ func operationPriorityAndCancellation() {
     queue.addOperation(operation)
 
     Thread.sleep(forTimeInterval: 0.1)
-//    Thread.sleep(forTimeInterval: 2)
     operation.cancel()
 }
 
-
-/// این تابع مثالی از استفاده از `OperationQueue` برای هماهنگی بین عملیات‌ها با استفاده از وابستگی‌ها را نشان می‌دهد.
+/// This function demonstrates the use of `OperationQueue` to coordinate between operations using dependencies.
 ///
-/// تابع `operationQueueCoordination` یک صف عملیات (`OperationQueue`) ایجاد می‌کند و چهار عملیات (`BlockOperation`) به آن اضافه می‌کند.
-/// با استفاده از متد `addDependency`، وابستگی‌هایی بین عملیات‌ها ایجاد می‌شود تا تعیین شود که کدام عملیات باید قبل از دیگری اجرا شود.
+/// The `operationQueueCoordination` function creates an `OperationQueue` and adds four `BlockOperation`s to it.
+/// Using the `addDependency` method, dependencies between the operations are created to determine the order in which the operations must
+/// execute.
 ///
-/// - عملکرد:
-/// 1. ایجاد یک صف عملیات جدید (`OperationQueue`).
-/// 2. تعریف و اضافه کردن چهار عملیات به صف.
-/// 3. ایجاد وابستگی بین عملیات‌ها:
-///    - عملیات B و C باید پس از اتمام عملیات A اجرا شوند.
-///    - عملیات D باید پس از اتمام عملیات‌های B و C اجرا شود.
-/// 4. اضافه کردن عملیات‌ها به صف.
+/// - Functionality:
+/// 1. Create a new `OperationQueue`.
+/// 2. Define and add four operations to the queue.
+/// 3. Create dependencies between the operations:
+///    - Operations B and C must run after operation A completes.
+///    - Operation D must run after both operations B and C complete.
+/// 4. Add the operations to the queue.
 ///
-/// مثال استفاده:
+/// Example usage:
 /// ```swift
 /// operationQueueCoordination()
 /// ```
 ///
-/// نمودار وابستگی‌ها:
+/// Dependency diagram:
 /// ```
 /// A ➡️ B
 /// ⬇️   ⬇️
@@ -179,36 +179,31 @@ func operationQueueCoordination() {
     let operationD = BlockOperation {
         print("D")
     }
-    
-    // ایجاد وابستگی‌ها
+
+    // Create dependencies
     operationB.addDependency(operationA)
     operationC.addDependency(operationA)
     operationD.addDependency(operationB)
     operationD.addDependency(operationC)
-    
-    // اضافه کردن عملیات‌ها به صف
+
+    // Add operations to the queue
     queue.addOperation(operationA)
     queue.addOperation(operationB)
     queue.addOperation(operationC)
     queue.addOperation(operationD)
 
-    // لغو عملیات A (اختیاری، برای مثال)
+    // Optional: Cancel operation A
 }
 
-
+/// This function evaluates thread performance by creating multiple concurrent operations in an `OperationQueue`.
 func operationPerformance() {
     let queue = OperationQueue()
     print(queue.maxConcurrentOperationCount)
 
-    for n in 0..<workCount {
+    for n in 0..<10 {
         queue.addOperation {
             print(queue.maxConcurrentOperationCount, Thread.current)
             while true {}
         }
     }
-
-//    queue.addOperation {
-//        print("Starting the prime operation")
-//        nthPrime(50000)
-//    }
 }
