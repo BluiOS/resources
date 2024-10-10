@@ -1,4 +1,6 @@
- final class AnyCancellable: Hashable {
+import Foundation
+
+private final class AnyCancellable: Hashable {
 
     private let cancel: () -> Void
 
@@ -17,16 +19,16 @@
     static func == (lhs: AnyCancellable, rhs: AnyCancellable) -> Bool {
         ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
- }
+}
 
- extension AnyCancellable {
+extension AnyCancellable {
     func store(_ store: inout Set<AnyCancellable>) {
         store.insert(self)
     }
- }
+}
 
- extension Task {
-    func store(_ store: inout Set<AnyCancellable>) {
+extension Task {
+    private func store(_ store: inout Set<AnyCancellable>) {
         store.insert(AnyCancellable(cancel))
     }
- }
+}

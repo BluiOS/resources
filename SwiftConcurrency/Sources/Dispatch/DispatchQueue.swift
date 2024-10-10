@@ -80,12 +80,13 @@ func dispatchQueueFeaturesExample() {
 /// ```
 func dispatchQueueSerialBasics() {
     // Creating a serial queue with label `my.queue`
-
+    let queue = DispatchQueue(label: "my.queue")
+    
     queue.sync { print("1", Thread.current) }
     queue.async { print("2", Thread.current) }
     queue.async { print("3", Thread.current) }
     queue.async { print("4", Thread.current) }
-    queue.ssync { print("5", Thread.current) }
+    queue.sync { print("5", Thread.current) }
     queue.async { print("6", Thread.current) }
 
     // print(1)
@@ -441,7 +442,7 @@ func dispatchDataRace() {
     let counter = Counter()
     let queue = DispatchQueue(label: "concurrent-queue", attributes: .concurrent)
 
-    for _ in 0..<workCount {
+    for _ in 0..<10 {
         let t = queue.sync {
             counter.increment()
         }
@@ -454,7 +455,7 @@ func dispatchDataRace() {
 
 func dispatchQueuePerformance() {
     let queue = DispatchQueue(label: "concurrent-queue", attributes: .concurrent)
-    for _ in 0..<workCount {
+    for _ in 0..<10 {
         queue.async {
             print(Thread.current)
             while true {}
