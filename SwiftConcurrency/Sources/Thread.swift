@@ -1,18 +1,20 @@
 import Foundation
 
-/// این تابع توضیحاتی در مورد کلاس `Thread` و ویژگی‌ها و روش‌های آن در Swift ارائه می‌دهد.
+/// This function provides details about the `Thread` class and its features in Swift.
 ///
-/// کلاس `Thread` یکی از کلاس‌های پایه‌ای برای مدیریت تردها در برنامه‌های چندنخی است.
-/// این کلاس به شما اجازه می‌دهد که عملیات مختلفی را به صورت همزمان اجرا کنید، بدون اینکه نیاز به استفاده از صف‌های پیشرفته‌تر مثل `DispatchQueue` یا `OperationQueue` داشته باشید.
+/// The `Thread` class is one of the fundamental classes for managing threads in multi-threaded applications.
+/// This class allows you to run various operations simultaneously, without needing to use more advanced queues like `DispatchQueue` or
+/// `OperationQueue`.
 ///
-/// ویژگی‌ها و روش‌های کلاس `Thread`:
-/// 1. **ایجاد ترد**: با استفاده از `Thread { ... }` یا `Thread(target:selector:object:)` می‌توان یک ترد جدید ایجاد کرد.
-/// 2. **شروع ترد**: با استفاده از `start()` ترد را شروع کنید.
-/// 3. **لغو ترد**: با استفاده از `cancel()` ترد را لغو کنید. باید توجه داشت که این عملیات بلافاصله اجرای ترد را متوقف نمی‌کند، بلکه یک فلگ (پرچم) لغو تنظیم می‌کند که باید به صورت دستی درون کد ترد بررسی شود.
-/// 4. **اولویت ترد**: با استفاده از `threadPriority` می‌توان اولویت اجرای ترد را تنظیم کرد.
-/// 5. **ذخیره‌سازی محلی ترد**: از `threadDictionary` می‌توان برای ذخیره و دسترسی به داده‌های محلی درون هر ترد استفاده کرد.
+/// Features and methods of the `Thread` class:
+/// 1. **Creating a thread**: A new thread can be created using `Thread { ... }` or `Thread(target:selector:object:)`.
+/// 2. **Starting a thread**: Use `start()` to start a thread.
+/// 3. **Canceling a thread**: Use `cancel()` to cancel a thread. Note that this operation does not immediately stop the thread but sets a
+/// cancel flag that should be checked manually within the thread's code.
+/// 4. **Thread priority**: You can adjust the execution priority of a thread using `threadPriority`.
+/// 5. **Thread-local storage**: You can use `threadDictionary` to store and access thread-specific local data.
 ///
-/// مثال:
+/// Example:
 /// ```swift
 /// let thread = Thread {
 ///     print("This is a new thread.")
@@ -20,41 +22,42 @@ import Foundation
 /// thread.start()
 /// ```
 ///
-/// این روش برای استفاده در برنامه‌های ساده مناسب است، اما برای برنامه‌های پیچیده‌تر معمولاً استفاده از `DispatchQueue` یا `OperationQueue` توصیه می‌شود.
+/// This method is suitable for simple applications, but for more complex scenarios, it is generally recommended to use `DispatchQueue` or
+/// `OperationQueue`.
 func explainThreadClass() {
     print("""
-    کلاس Thread یکی از کلاس‌های پایه‌ای برای مدیریت تردها در برنامه‌های چندنخی است.
-    این کلاس به شما اجازه می‌دهد که عملیات مختلفی را به صورت همزمان اجرا کنید، بدون اینکه نیاز به استفاده از صف‌های پیشرفته‌تر مثل DispatchQueue یا OperationQueue داشته باشید.
+    The `Thread` class is one of the fundamental classes for managing threads in multi-threaded applications.
+    It allows you to run various operations concurrently without needing more advanced queues like `DispatchQueue` or `OperationQueue`.
 
-    ویژگی‌ها و روش‌های کلاس Thread:
-    1. ایجاد ترد: با استفاده از Thread { ... } یا Thread(target:selector:object:) می‌توان یک ترد جدید ایجاد کرد.
-    2. شروع ترد: با استفاده از start() ترد را شروع کنید.
-    3. لغو ترد: با استفاده از cancel() ترد را لغو کنید. باید توجه داشت که این عملیات بلافاصله اجرای ترد را متوقف نمی‌کند، بلکه یک فلگ (پرچم) لغو تنظیم می‌کند که باید به صورت دستی درون کد ترد بررسی شود.
-    4. اولویت ترد: با استفاده از threadPriority می‌توان اولویت اجرای ترد را تنظیم کرد.
-    5. ذخیره‌سازی محلی ترد: از threadDictionary می‌توان برای ذخیره و دسترسی به داده‌های محلی درون هر ترد استفاده کرد.
+    Features and methods of the `Thread` class:
+    1. Create a thread: Use `Thread { ... }` or `Thread(target:selector:object:)` to create a new thread.
+    2. Start the thread: Use `start()` to begin the thread execution.
+    3. Cancel the thread: Use `cancel()` to cancel a thread. Note that the thread won't stop immediately. You must manually check the cancel flag.
+    4. Thread priority: Adjust the execution priority of the thread with `threadPriority`.
+    5. Thread-local storage: Use `threadDictionary` to store and access thread-specific local data.
 
-    مثال:
+    Example:
     let thread = Thread {
         print("This is a new thread.")
     }
     thread.start()
 
-    این روش برای استفاده در برنامه‌های ساده مناسب است، اما برای برنامه‌های پیچیده‌تر معمولاً استفاده از DispatchQueue یا OperationQueue توصیه می‌شود.
+    This method works well for simple apps, but for more complex use cases, `DispatchQueue` or `OperationQueue` is recommended.
     """)
 }
 
-/// این تابع یک مثال ساده از استفاده از کلاس `Thread` برای ایجاد و مدیریت تردها را نشان می‌دهد.
+/// This function demonstrates a simple example of using the `Thread` class to create and manage threads.
 ///
-/// تابع `exampleThreadUsage` یک ترد جدید ایجاد می‌کند که درون آن یک شمارنده را چاپ می‌کند.
-/// همچنین ترد اصلی نیز به صورت همزمان در حال اجرا بوده و شمارنده دیگری را چاپ می‌کند.
+/// The `exampleThreadUsage` function creates a new thread that prints a counter.
+/// Meanwhile, the main thread is also running and printing a separate counter simultaneously.
 ///
-/// عملکرد:
-/// 1. ایجاد یک ترد جدید با استفاده از کلاس `Thread`.
-/// 2. تنظیم اولویت ترد جدید.
-/// 3. شروع ترد جدید.
-/// 4. اجرای یک شمارنده در ترد اصلی.
+/// Functionality:
+/// 1. Create a new thread using the `Thread` class.
+/// 2. Set the priority of the new thread.
+/// 3. Start the new thread.
+/// 4. Run a counter in the main thread.
 ///
-/// مثال خروجی:
+/// Example output:
 /// ```
 /// Count 1 from main thread.
 /// This is a new thread.
@@ -70,25 +73,25 @@ func explainThreadClass() {
 /// Thread is exiting.
 /// Main thread is exiting.
 /// ```
-/// بسته به زمان‌بندی تردها، خروجی ممکن است متفاوت باشد.
+/// The output may vary depending on thread scheduling.
 func exampleThreadUsage() {
-    // ایجاد یک ترد جدید
+    // Create a new thread
     let thread = Thread {
         print("This is a new thread.")
         for i in 1...5 {
             print("Count \(i) from thread.")
-            Thread.sleep(forTimeInterval: 1) // ترد را به مدت 1 ثانیه به حالت خواب می‌برد
+            Thread.sleep(forTimeInterval: 1) // Puts the thread to sleep for 1 second
         }
         print("Thread is exiting.")
     }
 
-    // تنظیم اولویت ترد
+    // Set the thread priority
     thread.threadPriority = 0.8
 
-    // شروع ترد
+    // Start the thread
     thread.start()
 
-    // چاپ از ترد اصلی
+    // Print from the main thread
     for i in 1...5 {
         print("Count \(i) from main thread.")
         Thread.sleep(forTimeInterval: 1)
@@ -97,22 +100,22 @@ func exampleThreadUsage() {
     print("Main thread is exiting.")
 }
 
-
-/// این تابع پنج ترد جدید ایجاد و هر کدام را شروع می‌کند که یک شماره منحصر به فرد و اطلاعات ترد فعلی را چاپ می‌کنند.
+/// This function creates five new threads, each of which prints a unique number and current thread information.
 ///
-/// تابع `threadBasics` نشان‌دهنده ساده‌ترین روش استفاده از کلاس `Thread` در زبان Swift برای ایجاد تردهای جدید است.
-/// در این روش، پنج ترد جدید ایجاد شده و هر کدام شماره‌ای از 1 تا 5 و اطلاعات ترد فعلی را چاپ می‌کنند.
-/// این روش به عنوان ساده‌ترین روش ساخت ترد به صورت دستی شناخته می‌شود، اما امروزه دیگر توصیه نمی‌شود و روش‌های جدیدتری برای مدیریت تردها وجود دارد.
+/// The `threadBasics` function showcases the simplest way to use the `Thread` class in Swift to create new threads.
+/// Five new threads are created, and each one prints a number from 1 to 5 along with the current thread's information.
+/// This is the simplest way to manually create threads, but it is no longer recommended as there are more modern and efficient ways to
+/// manage threads.
 ///
-/// استفاده:
+/// Usage:
 /// ```swift
 /// threadBasics()
 /// ```
 ///
-/// خروجی:
-/// هر ترد شماره خود و اطلاعات ترد را چاپ می‌کند. ترتیب خروجی ممکن است بسته به زمان‌بندی تردها متفاوت باشد.
+/// Output:
+/// Each thread prints its own number and thread information. The order of the output may vary depending on thread scheduling.
 ///
-/// مثال خروجی:
+/// Example output:
 /// ```
 /// 1 <NSThread: 0x600003d40380>{number = 5, name = (null)}
 /// 2 <NSThread: 0x600003d40740>{number = 6, name = (null)}
@@ -120,7 +123,6 @@ func exampleThreadUsage() {
 /// 4 <NSThread: 0x600003d40ac0>{number = 8, name = (null)}
 /// 5 <NSThread: 0x600003d40c80>{number = 9, name = (null)}
 /// ```
-///
 func threadBasics() {
     Thread.detachNewThread {
         print("1", Thread.current)
@@ -139,47 +141,46 @@ func threadBasics() {
     }
 }
 
-
-/// این تابع مثالی از استفاده از اولویت‌بندی ترد و لغو ترد را نشان می‌دهد.
+/// This function demonstrates thread priority and cancellation.
 ///
-/// تابع `threadPriorityAndCancellation` یک ترد جدید با اولویت مشخص ایجاد می‌کند و در طول اجرای آن بررسی می‌کند که آیا ترد لغو شده است یا خیر.
-/// همچنین یک ترد داخلی نیز ایجاد می‌کند که وضعیت لغو آن را چاپ می‌کند.
+/// The `threadPriorityAndCancellation` function creates a new thread with a specified priority and checks if the thread is canceled during
+/// its execution.
+/// It also creates an inner thread that prints its cancellation status.
 ///
-/// استفاده:
+/// Usage:
 /// ```swift
 /// threadPriorityAndCancellation()
 /// ```
 ///
-/// توضیحات عملکرد:
-/// 1. یک ترد جدید با استفاده از یک کلوزر ایجاد می‌شود.
-/// 2. در شروع ترد، زمان شروع ثبت می‌شود و در پایان زمان سپری شده چاپ می‌شود.
-/// 3. ترد به مدت 1 ثانیه به حالت خواب می‌رود.
-/// 4. یک ترد داخلی ایجاد می‌شود که وضعیت لغو آن را چاپ می‌کند.
-/// 5. وضعیت لغو ترد اصلی بررسی می‌شود و اگر لغو شده باشد، پیامی چاپ شده و اجرای ترد متوقف می‌شود.
-/// 6. اولویت ترد اصلی به 0.75 تنظیم می‌شود و ترد شروع به کار می‌کند.
-/// 7. ترد اصلی به مدت 0.01 ثانیه به حالت خواب می‌رود و سپس لغو می‌شود.
+/// Functionality:
+/// 1. A new thread is created using a closure.
+/// 2. The start time of the thread is recorded, and the time taken is printed at the end.
+/// 3. The thread sleeps for 1 second.
+/// 4. An inner thread is created to check and print its cancellation status.
+/// 5. The cancellation status of the main thread is checked. If canceled, a message is printed, and the thread stops.
+/// 6. The main thread's priority is set to 0.75, and it is started.
+/// 7. The main thread sleeps for 0.01 seconds and then gets canceled.
 ///
-/// مثال خروجی:
+/// Example output:
 /// ```
 /// Cancelled!
-/// Inner thread cancelled? false
+/// Inner thread canceled? false
 /// Finished in 1.01 seconds
 /// ```
-/// بسته به زمان‌بندی تردها، خروجی ممکن است متفاوت باشد.
+/// The output may vary depending on thread scheduling.
 ///
-/// هشدار:
-/// این مثال تنها برای آموزش است و در عمل معمولاً از روش‌های پیچیده‌تر و کارآمدتری برای مدیریت تردها و لغو آنها استفاده می‌شود.
-///
+/// Warning:
+/// This example is for educational purposes only. In practice, more sophisticated and efficient methods are used to manage and cancel
+/// threads.
 func threadPriorityAndCancellation() {
     let thread = Thread {
         let start = Date()
         defer { print("Finished in", Date().timeIntervalSince(start)) }
         Thread.sleep(forTimeInterval: 1)
         Thread.detachNewThread {
-            print("Inner thread cancelled?", Thread.current.isCancelled)
+            print("Inner thread canceled?", Thread.current.isCancelled)
         }
-        guard !Thread.current.isCancelled
-        else {
+        guard !Thread.current.isCancelled else {
             print("Cancelled!")
             return
         }
@@ -191,24 +192,24 @@ func threadPriorityAndCancellation() {
     thread.cancel()
 }
 
-
-/// این تابع مثالی از استفاده از ذخیره‌سازی اطلاعات ترد و هماهنگی بین تردها را نشان می‌دهد.
+/// This function demonstrates the use of thread storage and coordination between threads.
 ///
-/// تابع `threadStorageAndCoordination` چندین ترد ایجاد می‌کند که هر کدام درخواست‌های شبکه و پایگاه داده را به صورت موازی انجام می‌دهند.
-/// از `threadDictionary` برای ذخیره و بازیابی شناسه‌های درخواست‌ها در تردهای مختلف استفاده می‌شود.
+/// The `threadStorageAndCoordination` function creates multiple threads that perform parallel network and database requests.
+/// `threadDictionary` is used to store and retrieve request IDs across different threads.
 ///
-/// استفاده:
+/// Usage:
 /// ```swift
 /// threadStorageAndCoordination()
 /// ```
 ///
-/// توضیحات عملکرد:
-/// 1. دو تابع داخلی `makeDatabaseQuery` و `makeNetworkRequest` تعریف می‌شوند که هر کدام شناسه درخواست را از `threadDictionary` دریافت کرده و عملیات مربوطه را انجام می‌دهند.
-/// 2. تابع `response(for:)` یک پاسخ HTTP ساختگی را برمی‌گرداند و در این بین، دو ترد برای انجام درخواست‌های شبکه و پایگاه داده ایجاد می‌کند.
-/// 3. شناسه درخواست به `threadDictionary` تردهای جدید اضافه می‌شود تا اطلاعات درخواست بین تردها به اشتراک گذاشته شود.
-/// 4. هر ترد اصلی ده درخواست مختلف را به صورت موازی ارسال می‌کند و شناسه منحصر به فردی به هر درخواست اختصاص می‌دهد.
+/// Functionality:
+/// 1. Two inner functions `makeDatabaseQuery` and `makeNetworkRequest` are defined, each retrieving a request ID from `threadDictionary`
+/// and performing their respective operations.
+/// 2. The `response(for:)` function returns a mock HTTP response, creating two threads to handle network and database requests.
+/// 3. The request ID is added to the new threads' `threadDictionary`, allowing data sharing between threads.
+/// 4. The main thread sends ten different requests in parallel, with each request assigned a unique ID.
 ///
-/// مثال خروجی:
+/// Example output:
 /// ```
 /// 2D4FC2A7-8A9D-4A5E-8265-A1B8F1E89B42 Making network request
 /// 2D4FC2A7-8A9D-4A5E-8265-A1B8F1E89B42 Making database query
@@ -216,25 +217,19 @@ func threadPriorityAndCancellation() {
 /// 2D4FC2A7-8A9D-4A5E-8265-A1B8F1E89B42 Finished database query
 /// 2D4FC2A7-8A9D-4A5E-8265-A1B8F1E89B42 Finished in 0.51 seconds
 /// ```
-/// بسته به زمان‌بندی تردها، خروجی ممکن است متفاوت باشد.
-///
-/// هشدار:
-/// این مثال تنها برای آموزش است و در عمل معمولاً از روش‌های پیچیده‌تر و کارآمدتری برای مدیریت تردها و هماهنگی بین آنها استفاده می‌شود.
-///
+/// The output may vary depending on thread scheduling.
 func threadStorageAndCoordination() {
     func makeDatabaseQuery() {
         let requestId = Thread.current.threadDictionary["requestId"] as! UUID
         print(requestId, "Making database query")
         Thread.sleep(forTimeInterval: 0.5)
         print(requestId, "Finished database query")
-        print("\(#function)",Thread.current)
     }
     func makeNetworkRequest() {
         let requestId = Thread.current.threadDictionary["requestId"] as! UUID
         print(requestId, "Making network request")
         Thread.sleep(forTimeInterval: 0.5)
         print(requestId, "Finished network request")
-        print("\(#function)",Thread.current)
     }
 
     func response(for request: URLRequest) -> HTTPURLResponse {
@@ -243,12 +238,10 @@ func threadStorageAndCoordination() {
         let start = Date()
         defer { print(requestId, "Finished in", Date().timeIntervalSince(start)) }
 
-        print("\(#function)",Thread.current)
-
         let databaseQueryThread = Thread { makeDatabaseQuery() }
         databaseQueryThread.threadDictionary.addEntries(from: Thread.current.threadDictionary as! [AnyHashable: Any])
         databaseQueryThread.start()
-        
+
         let networkRequestThread = Thread { makeNetworkRequest() }
         networkRequestThread.threadDictionary.addEntries(from: Thread.current.threadDictionary as! [AnyHashable: Any])
         networkRequestThread.start()
@@ -260,34 +253,25 @@ func threadStorageAndCoordination() {
         return .init()
     }
 
-//    for _ in 0..<10 {
-        let thread = Thread {
-            print("\(#function)",Thread.current)
-            _ = response(for: .init(url: .init(string: "http://pointfree.co")!))
-        }
-        thread.threadDictionary["requestId"] = UUID()
-        thread.start()
-//    }
+    let thread = Thread {
+        _ = response(for: .init(url: .init(string: "http://pointfree.co")!))
+    }
+    thread.threadDictionary["requestId"] = UUID()
+    thread.start()
 }
 
-/// این تابع بررسی می‌کند که آیا یک عدد صحیح داده شده یک عدد اول است یا خیر.
+/// This function checks if a given integer is a prime number.
 ///
-/// تابع `isPrime` یک عدد صحیح را به عنوان ورودی می‌پذیرد و بررسی می‌کند که آیا این عدد اول است یا خیر.
-/// عدد اول عددی است که تنها بر خودش و 1 بخش‌پذیر باشد.
+/// The `isPrime` function accepts an integer and checks if it is a prime number.
+/// A prime number is only divisible by itself and 1.
 ///
-/// - پارامتر:
-///   - p: عدد صحیحی که باید بررسی شود.
-/// - خروجی:
-///   - `true` اگر عدد اول باشد.
-///   - `false` اگر عدد اول نباشد.
+/// - Parameter:
+///   - p: The integer to check.
+/// - Returns:
+///   - `true` if the number is prime.
+///   - `false` if the number is not prime.
 ///
-/// عملکرد:
-/// 1. اگر عدد کمتر یا مساوی 1 باشد، تابع `false` را بازمی‌گرداند.
-/// 2. اگر عدد کمتر یا مساوی 3 باشد (و بزرگ‌تر از 1)، تابع `true` را بازمی‌گرداند.
-/// 3. برای اعداد بزرگ‌تر از 3، تابع بررسی می‌کند که آیا عدد بر هر یک از اعداد تا ریشه دوم آن بخش‌پذیر است یا خیر. اگر بله، عدد اول نیست و تابع `false` را بازمی‌گرداند.
-/// 4. اگر هیچ کدام از شرایط بالا برقرار نباشد، عدد اول است و تابع `true` را بازمی‌گرداند.
-///
-/// مثال‌ها:
+/// Example:
 /// ```swift
 /// isPrime(1)   // false
 /// isPrime(2)   // true
@@ -305,24 +289,17 @@ func isPrime(_ p: Int) -> Bool {
     return true
 }
 
-/// این تابع `n`امین عدد اول را پیدا می‌کند و زمان سپری شده برای پیدا کردن آن را چاپ می‌کند.
+/// This function finds the nth prime number and prints the time taken to find it.
 ///
-/// تابع `nthPrime` یک عدد صحیح `n` را به عنوان ورودی می‌پذیرد و `n`امین عدد اول را پیدا می‌کند.
-/// همچنین زمان سپری شده برای انجام این محاسبه را اندازه‌گیری و چاپ می‌کند.
+/// The `nthPrime` function accepts an integer `n` and finds the nth prime number.
+/// It also measures and prints the time taken to compute the result.
 ///
-/// - پارامتر:
-///   - n: عدد صحیحی که نشان می‌دهد چندمین عدد اول باید پیدا شود.
+/// - Parameter:
+///   - n: The index of the prime number to find.
 ///
-/// عملکرد:
-/// 1. زمان شروع محاسبه ثبت می‌شود.
-/// 2. شمارنده‌ای برای تعداد اعداد اول پیدا شده (`primeCount`) و متغیری برای نگهداری عدد فعلی (`prime`) تعریف می‌شوند.
-/// 3. تا زمانی که تعداد اعداد اول پیدا شده کمتر از `n` باشد، اعداد یکی یکی بررسی می‌شوند.
-/// 4. اگر عدد فعلی اول باشد، شمارنده اعداد اول (`primeCount`) افزایش می‌یابد.
-/// 5. پس از یافتن `n`امین عدد اول، مقدار آن و زمان سپری شده چاپ می‌شود.
-///
-/// مثال:
+/// Example:
 /// ```swift
-/// nthPrime(1)  // 2nd prime 2 time ...
+/// nthPrime(1)  // 1st prime 2 time ...
 /// nthPrime(5)  // 5th prime 11 time ...
 /// nthPrime(10) // 10th prime 29 time ...
 /// ```
@@ -342,32 +319,22 @@ func nthPrime(_ n: Int) {
     )
 }
 
-
-/// این تابع به صورت همزمان `n`امین عدد اول را پیدا می‌کند و زمان سپری شده برای پیدا کردن آن را چاپ می‌کند.
+/// This async function finds the nth prime number concurrently and prints the time taken to compute it.
 ///
-/// تابع `asyncNthPrime` یک عدد صحیح `n` را به عنوان ورودی می‌پذیرد و به صورت همزمان `n`امین عدد اول را پیدا می‌کند.
-/// همچنین زمان سپری شده برای انجام این محاسبه را اندازه‌گیری و چاپ می‌کند.
+/// The `asyncNthPrime` function accepts an integer `n` and asynchronously computes the nth prime number,
+/// yielding control to allow concurrent tasks.
 ///
-/// - پارامتر:
-///   - n: عدد صحیحی که نشان می‌دهد چندمین عدد اول باید پیدا شود.
+/// - Parameter:
+///   - n: The index of the prime number to find.
 ///
-/// عملکرد:
-/// 1. زمان شروع محاسبه ثبت می‌شود.
-/// 2. شمارنده‌ای برای تعداد اعداد اول پیدا شده (`primeCount`) و متغیری برای نگهداری عدد فعلی (`prime`) تعریف می‌شوند.
-/// 3. تا زمانی که تعداد اعداد اول پیدا شده کمتر از `n` باشد، اعداد یکی یکی بررسی می‌شوند.
-/// 4. اگر عدد فعلی اول باشد، شمارنده اعداد اول (`primeCount`) افزایش می‌یابد.
-/// 5. اگر عدد فعلی به 1000 بخش‌پذیر باشد و اول نباشد، ترد فعلی کنترل را به سیستم عامل باز می‌گرداند تا دیگر تردها فرصت اجرا داشته باشند.
-/// 6. پس از یافتن `n`امین عدد اول، مقدار آن و زمان سپری شده چاپ می‌شود.
-///
-/// - مثال:
+/// Example:
 /// ```swift
 /// await asyncNthPrime(1)  // 1st prime 2 time ...
 /// await asyncNthPrime(5)  // 5th prime 11 time ...
 /// await asyncNthPrime(10) // 10th prime 29 time ...
 /// ```
 ///
-/// - توجه: این تابع باید در یک محیط همزمان (asynchronous context) فراخوانی شود.
-///
+/// Note: This function must be called in an asynchronous context.
 func asyncNthPrime(_ n: Int) async {
     let start = Date()
     var primeCount = 0
@@ -386,30 +353,30 @@ func asyncNthPrime(_ n: Int) async {
     )
 }
 
-/// این تابع یک سناریو را شبیه‌سازی می‌کند که در آن چندین ترد به طور همزمان به یک متغیر مشترک دسترسی دارند و مشکلات رقابت داده‌ها را نمایش می‌دهد.
+/// This function simulates a scenario where multiple threads access a shared variable concurrently, showing data race issues.
 ///
-/// تابع `threadDataRace` یک کلاس `Counter` را تعریف می‌کند که از قفل‌ها برای مدیریت دسترسی همزمان به یک متغیر مشترک استفاده می‌کند.
-/// این تابع 1000 ترد را ایجاد می‌کند که هر کدام مقدار `count` را با استفاده از روش `modify` افزایش می‌دهند.
+/// The `threadDataRace` function defines a `Counter` class that uses locks to manage concurrent access to a shared variable.
+/// It creates 1000 threads, each of which increases the `count` using the `modify` method.
 ///
-/// - توضیحات کلاس `Counter`:
-///   - دارای یک متغیر `count` است که به صورت همزمان توسط چندین ترد به آن دسترسی پیدا می‌کند.
-///   - از `NSLock` برای جلوگیری از رقابت داده‌ها استفاده می‌کند.
-///   - شامل دو متد `increment` و `modify` برای افزایش مقدار `count` است.
+/// - Explanation of the `Counter` class:
+///   - It has a `count` variable that is accessed concurrently by multiple threads.
+///   - It uses `NSLock` to prevent data race issues.
+///   - Includes two methods `increment` and `modify` to safely increase the `count`.
 ///
-/// - توضیحات متد `threadDataRace`:
-///   - 1000 ترد ایجاد می‌کند که هر کدام به مدت 0.01 ثانیه می‌خوابند و سپس مقدار `count` را افزایش می‌دهند.
-///   - پس از اتمام تمامی تردها، مقدار نهایی `count` چاپ می‌شود.
+/// - Functionality:
+///   - Creates 1000 threads that sleep for 0.01 seconds and then increase the `count`.
+///   - Prints the final value of `count` after all threads finish.
 ///
-/// استفاده:
+/// Usage:
 /// ```swift
 /// threadDataRace()
 /// ```
 ///
-/// مثال خروجی:
+/// Example output:
 /// ```
 /// count 1000
 /// ```
-/// بسته به زمان‌بندی تردها، خروجی ممکن است متفاوت باشد و در صورتی که قفل‌ها به درستی استفاده نشوند، خروجی می‌تواند نادرست باشد.
+/// The output may vary depending on thread scheduling, and without proper locking, the result may be incorrect.
 func threadDataRace() {
     class Counter {
         let lock = NSLock()
@@ -430,50 +397,41 @@ func threadDataRace() {
 
     let counter = Counter()
 
-    for _ in 0..<workCount {
+    for _ in 0..<1000 {
         Thread.detachNewThread {
             Thread.sleep(forTimeInterval: 0.01)
-//            counter.modify { $0.count += 1 }
-
-//            قفل‌ها برای دسترسی ایمن به متغیر count
-//            counter.lock.lock()
-//            let count = counter.count
-//            counter.lock.unlock()
-//            counter.lock.lock()
-//            counter.count = count + 1
-//            counter.lock.unlock()
-
-            //    کدهای دیگر برای دسترسی به متغیر count بدون قفل
-//            counter.count += 1
+            counter.increment()
         }
     }
     Thread.sleep(forTimeInterval: 2)
     print("count", counter.count)
 }
 
+/// This function creates multiple threads to simulate thread performance and management.
+///
+/// The `threadPerformance` function creates multiple threads that perform various tasks,
+/// demonstrating thread creation, management, and performance evaluation.
 func threadPerformance() {
-    for n in 0..<workCount {
+    for n in 0..<10 {
         var thread: Thread!
         thread = Thread { [weak thread] in
             print(n, Thread.current)
             while true {
-//                print("harchi")
-//                if thread?.isCancelled == true {
-//                    print("Canceled!")
-//                    return
-//                } else {
-//                    print(Thread.current)
-//                    Thread.sleep(forTimeInterval: 1)
-//                    thread?.cancel()
-//                }
+                if thread?.isCancelled == true {
+                    print("Canceled!")
+                    return
+                }
             }
         }
         thread.start()
         Thread.sleep(forTimeInterval: 0.1)
+        thread.cancel()
     }
 
-//    Thread.detachNewThread {
-//        print("Starting the prime thread")
-//        nthPrime(50000)
-//    }
+    /*
+     Thread.detachNewThread {
+     print("Starting the prime thread")
+     nthPrime(50000)
+     }
+     */
 }
